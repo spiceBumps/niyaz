@@ -1,0 +1,6 @@
+requests
+tkinter
+pytest
+pytest-html
+pre-commit 
+black
