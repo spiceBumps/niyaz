@@ -3,13 +3,10 @@ from unittest.mock import patch
 from main import fetch_and_notify
 from weather_api import get_weather
 
+
 class TestIntegration(unittest.TestCase):
     def setUp(self):
-        self.valid_data = {
-            "city": "Moscow",
-            "temperature": 15.0,
-            "description": "ясно"
-        }
+        self.valid_data = {"city": "Moscow", "temperature": 15.0, "description": "ясно"}
 
     @patch("main.get_weather")
     @patch("main.send_notification")

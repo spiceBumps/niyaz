@@ -6,8 +6,9 @@ from typing import Dict, Optional
 logging.basicConfig(
     filename="error.log",
     level=logging.ERROR,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 def get_weather(city: str, api_key: str) -> Optional[Dict]:
     """
@@ -17,22 +18,22 @@ def get_weather(city: str, api_key: str) -> Optional[Dict]:
     if not city:
         logging.error("Пустое название города")
         raise ValueError("Название города не может быть пустым")
-    
+
     if not api_key:
         logging.error("Пустой API-ключ")
         raise ValueError("API-ключ не может быть пустым")
-    
+
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=ru"
-    
+
     try:
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
-        
+
         return {
             "city": data["name"],
             "temperature": data["main"]["temp"],
-            "description": data["weather"][0]["description"]
+            "description": data["weather"][0]["description"],
         }
     except requests.exceptions.HTTPError as http_err:
         error_msg = f"HTTP ошибка при запросе погоды для {city}: {http_err}"
