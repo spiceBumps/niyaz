@@ -23,6 +23,9 @@ class TestIntegration(unittest.TestCase):
         result = fetch_and_notify("Moscow", "fake_api_key")
         self.assertFalse(result)
 
+
+
+
     @patch("main.get_weather", side_effect=ValueError("API error"))
     def test_get_weather_exception(self, mock_get_weather):
         result = fetch_and_notify("Moscow", "fake_api_key")
